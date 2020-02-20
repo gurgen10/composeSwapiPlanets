@@ -13,21 +13,22 @@ const renderWithData = (RenderItem, func) => {
   return (props) => <RenderItem {...props} >{ func }</RenderItem>;
 }
 
-const renderName = (item) => `${item.name}`;
-const renderNameAndDiameter = (item) => `${item.name} (${item.diameter})`;
+const renderUserName = (item) => `${item.name} (${item.gender})`;
+const renderPlanetName = (item) => `${item.name} (${item.diameter})`;
+const renderStarshipName = (item) => `${item.name} (${item.model})`;
 
 const UsersList = withData(
-  renderWithData(ListItem, renderName),
+  renderWithData(ListItem, renderUserName),
   getUsers
 );
 
 const PlanetsList = withData(
-  renderWithData(ListItem, renderNameAndDiameter),
+  renderWithData(ListItem, renderPlanetName),
   getPlanets
 );
 
 const StarshipList = withData(
-  renderWithData(ListItem, renderName),
+  renderWithData(ListItem, renderStarshipName),
   getStarShips
 );
 

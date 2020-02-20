@@ -1,18 +1,18 @@
-import  {
-    UsersList,
-    PlanetsList,
-    StarshipList
-  } from './list';
+import {
+  UsersList,
+  PlanetsList,
+  StarshipList
+} from './list';
 
-  import  {UserDetail,
+import UserDetail from './UserDetail';
+import PlanetDetail from './PlanetDetail';
+import StarshipDetail from './StarshipDetail';
+
+export {
+  UsersList,
+  PlanetsList,
+  StarshipList,
+  UserDetail,
   PlanetDetail,
-  StarshipDetail} from './detail';
-
-  export {
-    UsersList,
-    PlanetsList,
-    StarshipList,
-    UserDetail,
-    PlanetDetail,
-    StarshipDetail
-  }
+  StarshipDetail
+};

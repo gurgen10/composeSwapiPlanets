@@ -1,7 +1,7 @@
 import withData from './withData';
-import withItemDetail from './withItemDetail';
+import withSwapiData from './withSwapiData';
 
 export {
-  withData, 
-  withItemDetail
+  withData,
+  withSwapiData
 }

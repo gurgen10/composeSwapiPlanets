@@ -9,7 +9,8 @@ import PersonPage from '../PersonPage';
 import ItemDetail from '../ItemDetail';
 import ErrorButton from '../ErrorButton';
 import ErrorBoundary from '../ErrorBoundary'
-import { SWProvider} from '../SWContext';
+import Record from '../Record';
+
 import SwapiService from '../../services/SwapiService';
 
 class App extends Component {
@@ -34,16 +35,37 @@ class App extends Component {
 
     const randomPlanet = toggleRandomPlanet? <RandomPlanet />: null;
 
+    const personDetail = (
+      <ItemDetail
+        itemId="12"
+        getData={ this.swapi.getUser }
+        getImage={ this.swapi.getUserImage }
+      >
+        <Record lable="Gender" objKey="gender" />
+        <Record lable="Eye Color" objKey="eyeColor" />
+      </ItemDetail>
+    )
+
+    const planetDetail = (
+      <ItemDetail
+        itemId="7"
+        getData={ this.swapi.getPlanet }
+        getImage={ this.swapi.getPlanetImage }
+      >
+        <Record lable="Population" objKey="population" />
+      </ItemDetail>
+    )
+
     return (
       <ErrorBoundary>
         <Container fluid>
-          <SWProvider value={this.swapi}>
-            <Header />
-            { randomPlanet }
-            <Button className="ml-5" variant="warning" onClick={ this.onToggleRandomPlanet }>Toggle random planet</Button>
-            <ErrorButton />
-            <PersonPage />
-            </SWProvider>
+          <Header />
+          { randomPlanet }
+          <Button className="ml-5" variant="warning" onClick={ this.onToggleRandomPlanet }>Toggle random planet</Button>
+          <ErrorButton />
+          <PersonPage />
+
+          {/* <RowCol left={ planetDetail } right={ personDetail } /> */}
         </Container>
       </ErrorBoundary>
     );

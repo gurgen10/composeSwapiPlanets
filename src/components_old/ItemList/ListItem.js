@@ -1,9 +1,9 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
-
 import './ListItem.css';
 
 const ListItem = ({ items, getItemId, children }) => {
+console.log('items',items);
 
     const content = items.map((el) => {
       return (
@@ -13,7 +13,7 @@ const ListItem = ({ items, getItemId, children }) => {
           action
           key={ el.id }
         >
-          { children(el) }
+          {children(el)}
         </ListGroup.Item>
       )
     });
@@ -24,7 +24,5 @@ const ListItem = ({ items, getItemId, children }) => {
       </ListGroup>
     );
 };
-
-
 
 export default ListItem;

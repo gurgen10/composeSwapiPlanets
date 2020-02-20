@@ -1,11 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
+
+import Loading from '../Loading';
 import ErrorButton from '../ErrorButton';
+
 import './ItemDetail.css';
 
-const ItemDetail = ({item, image, children}) => {
-console.log(children);
-const records = children()
+class ItemDetail extends Component {
+
+  state = {
+    item: null,
+    image: null
+  }
+
+  componentDidMount() {
+    if (this.props.itemId) {
+      this.getItem()
+    }
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.itemId !== this.props.itemId) {
+      this.getItem()
+    }
+  }
+
+  getItem = async () => {
+    const { itemId, getData, getImage } = this.props;
+    
+    const item = await getData(itemId);
+    const image = getImage(itemId);
+    
+    this.setState({ item, image });
+  }
+
+  render() {
+    const { item, image } = this.state;
+    
+    if (!item) return <Loading />;
 
     return (
       <Row className="detail">
@@ -17,8 +49,7 @@ const records = children()
           <h2>{ item.name }</h2>
           <ul>
             {
-              
-              React.Children.map(records, (el) => {
+              React.Children.map(this.props.children, (el) => {
                 return React.cloneElement(el, { item })
               })
             }
@@ -28,7 +59,7 @@ const records = children()
         <ErrorButton />
       </Row>
     );
-  
+  }
 };
 
 export default ItemDetail;
